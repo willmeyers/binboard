@@ -1,0 +1,2 @@
+class TagValidator:
+    pass

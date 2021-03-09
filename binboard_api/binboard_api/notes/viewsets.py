@@ -4,9 +4,11 @@ from rest_framework import viewsets, status, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from tag.models import Tag
+from posts.models import Post
+from tags.models import Tag
 from .models import Note
 from .serializers import PublicNoteSerializer, UserNoteSerializer
+
 
 class PublicNoteViewSet(viewsets.ViewSet):
     def list(self, request):
@@ -34,6 +36,10 @@ class UserNoteViewSet(viewsets.ModelViewSet):
 
         note = Note.objects.create(**data)
 
+        post = Post.objects.create(
+
+        )
+
         tags = data.pop('tags')
         if tags:
             tag_titles = tags.split()
@@ -46,8 +52,8 @@ class UserNoteViewSet(viewsets.ModelViewSet):
                     tags.append(Tag(**{
                         'title': tag,
                         'is_private': True if tag.startswith('.') else False,
-                        'content_object': note,
-                        'object_id': note.id
+                        'content_object': post,
+                        'object_id': post.id
                     }))
 
                 Tag.objects.bulk_create(tags)

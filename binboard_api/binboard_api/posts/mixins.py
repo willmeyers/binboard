@@ -1,10 +1,11 @@
 import datetime
+from django.utils import timezone
 from django.template.defaultfilters import pluralize
 
 
 class CreatedAgoMixin:
-    def timestamp(self) -> str:
-        delta_t = datetime.datetime.now() - self.created_at
+    def created_ago(self) -> str:
+        delta_t = timezone.now() - self.created_at
 
         if delta_t.seconds < 60:
             return 'just now'

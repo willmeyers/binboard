@@ -1,3 +1,9 @@
-from django.test import TestCase
+from rest_framework import test
 
-# Create your tests here.
+
+class PublicPostTests(test.APITestCase):
+    pass
+
+
+class UserPostTests(test.APITestCase):
+    pass

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.contenttypes.fields import GenericRelation
 
 from posts.mixins import CreatedAgoMixin
 
@@ -10,3 +11,4 @@ class Note(models.Model, CreatedAgoMixin):
     shared = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True, blank=True)
+    tags = GenericRelation('tags.Tag')
